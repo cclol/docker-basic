@@ -11,5 +11,6 @@ RUN npm config set registry https://${NPM_REGISTRY}
 RUN apk --no-cache add --virtual builds-deps build-base python
 RUN npm install -g nodemon
 RUN npm install
+RUN npm rebuild bcrypt --build-from-source
 
 CMD [ "npm", "start" ]

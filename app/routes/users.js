@@ -4,7 +4,8 @@ const uuid = require('uuid/v4');
 const crypt = require('bcrypt');
 const session = require('express-session');
 const KnexSessionStore = require("connect-session-knex")(session);
-const knex = require('./data/db.js');
+const knex = require('./../dbconfig');
+
 
 const store = new KnexSessionStore({
     knex: knex,
