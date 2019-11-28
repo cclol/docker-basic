@@ -1,0 +1,15 @@
+html
+head
+    title='Index'
+body
+    h1 login
+
+    form(action='/users/login', method='POST')
+        p
+            | Username:
+            input(name='username', value='', type='text')
+            | Password:
+            input(name='password', value='', type='password')
+        input(value='Login', type='submit')
+
+    a(class='button' href='/users') Reg

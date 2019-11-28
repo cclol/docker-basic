@@ -1,0 +1,9 @@
+html
+head
+    title= 'Home'
+body
+    h1= 'Welcome ' + username
+    form(action='/users/logout', method='GET')
+        p
+        input(value='Logout', type='submit')
+

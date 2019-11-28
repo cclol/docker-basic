@@ -1,0 +1,18 @@
+html
+head
+    title= 'reg'
+body
+    h1 reg
+
+    form(action='/users/reg', method='POST')
+        p
+            | Username:
+            input(name='username', value='', type='text')
+            | Password:
+            input(name='password', value='', type='password')
+            | E-Mail:
+            input(name='email', value='', type='email')
+        input(value='Submit', type='submit')
+
+    a(class='button' href='/') login
+
