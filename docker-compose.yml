@@ -1,0 +1,30 @@
+version: '2.3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "6060:3000"
+    depends_on:
+      - db
+    environment:
+      MYSQL_DATABASE: "123"
+      MYSQL_USER: "123"
+      MYSQL_PASSWORD: "123"
+      MYSQL_HOST: "db"
+    # volumes:
+    #  - "./app:/data/app"
+  db:
+    image: dev-docker.netkey.at:5000/mysql:5.7
+    environment:
+      MYSQL_DATABASE: "123"
+      MYSQL_USER: "123"
+      MYSQL_PASSWORD: "123"
+      MYSQL_ROOT_PASSWORD: "123"
+    volumes:
+      - "./data/mysql:/var/lib/mysql"
+
+  adminer:
+    image: dev-docker.netkey.at:5000/netkey/adminer
+    ports:
+      - "8096:80"
