@@ -7,20 +7,16 @@ services:
       - "6060:3000"
     depends_on:
       - db
-    environment:
-      MYSQL_DATABASE: "test"
-      MYSQL_USER: "123"
-      MYSQL_PASSWORD: "123"
-      MYSQL_HOST: "db"
-    # volumes:
-    #  - "./app:/data/app"
+    volumes:
+      - "./app:/data/app"
+      - "/data/app/node_modules/"
   db:
     image: dev-docker.netkey.at:5000/mysql:5.7
     environment:
-      MYSQL_DATABASE: "test"
-      MYSQL_USER: "123"
-      MYSQL_PASSWORD: "123"
-      MYSQL_ROOT_PASSWORD: "123"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASS}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASS}"
     volumes:
       - "./data/mysql:/var/lib/mysql"
 
@@ -28,3 +24,5 @@ services:
     image: dev-docker.netkey.at:5000/netkey/adminer
     ports:
       - "8096:80"
+
+ #/bin/sh/node_modules/.bin npx knex migrate:latest

@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon --legacy-watch app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,5 +19,8 @@
     "mysql": "^2.17.1",
     "pug": "^2.0.4",
     "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }

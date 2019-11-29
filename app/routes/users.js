@@ -5,8 +5,6 @@ const crypt = require('bcrypt');
 const session = require('express-session');
 const KnexSessionStore = require("connect-session-knex")(session);
 const knex = require('./../dbconfig');
-
-
 const store = new KnexSessionStore({
     knex: knex,
     tablename: "sessions" // optional. Defaults to 'sessions'
@@ -31,9 +29,11 @@ router.get('/', (req, res) => {
     res.render('users')
 });
 
+
 router.get('/home', (req, res) => {
     if(req.session.loggedIn === true) {
         res.render('home', {username: uname});
+        console.log(res)
     } else {
         uname = '';
         res.redirect('/')
@@ -49,19 +49,17 @@ router.post('/login', async (req, res) => {
     try {
         let table = 'users';
         let userInput = req.body.username;
-        const result = await readUserPassword(table, userInput)
-        const Userpw = result.find(item => item.password)
-
+        const result = await readUserPassword(table, userInput);
+        const Userpw = result.find(item => item.password);
         if(Userpw === undefined) {
-            res.redirect('/')
-            console.log('undefined if')
+            res.redirect('/');
+            console.log('undefined if');
             return
         }
         const comparePassword = await crypt.compare(req.body.password, Userpw.password);
-        console.log(comparePassword)
-
+        console.log(comparePassword);
         if (comparePassword === true) {
-            uname = req.body.username
+            uname = req.body.username;
             req.session.loggedIn = true;
             //console.log(req.session)
             res.redirect('/users/home')
