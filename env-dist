@@ -1,0 +1,5 @@
+
+DB_HOST=db
+DB_USER=yourusername
+DB_PASS=yourpw
+DB_NAME=yourdbname

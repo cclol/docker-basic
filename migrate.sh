@@ -1,7 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
-# npx knex migrate:latest
-echo "entryoint"
+sleep 2
+
+#npx knex migrate:latest
+npx db-migrate up
+
 
 exec "$@"
